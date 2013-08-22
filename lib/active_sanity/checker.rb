@@ -70,12 +70,13 @@ module ActiveSanity
         begin
           puts "*****"
           puts model
+          puts ""
           model.find_each do |record|
             unless record.valid?
               invalid_record!(record)
               puts "*****"
               puts model
-              puts record
+              puts "#{record.class}: #{record.id}"
               puts ""
             end
           end
