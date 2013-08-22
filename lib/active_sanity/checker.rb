@@ -56,7 +56,7 @@ module ActiveSanity
         begin
           invalid_record.destroy if invalid_record.record.valid?
         rescue
-          # Record does not exists.
+          # Record does not exist
           invalid_record.delete
         end
       end
@@ -68,9 +68,15 @@ module ActiveSanity
     def check_all_records
       models.each do |model|
         begin
+          puts "*****"
+          puts model
           model.find_each do |record|
             unless record.valid?
               invalid_record!(record)
+              puts "*****"
+              puts model
+              puts record
+              puts ""
             end
           end
         rescue => e
